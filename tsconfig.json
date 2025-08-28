@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig/tsconfig.node.json",
+  "compileOnSave": true,
+  "exclude": ["dist", "node_modules"],
+  "include": ["./src/**/*.js", "./tsup.config.ts"]
+}

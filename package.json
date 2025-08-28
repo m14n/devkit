@@ -1,0 +1,182 @@
+{
+  "name": "@m14n/devkit",
+  "description": "Shared developer toolkit with ESLint, Prettier, Commitlint, TypeScript, lint-staged and semantic-release configs for consistent project setup.",
+  "license": "MIT",
+  "keywords": [
+    "eslint",
+    "eslint-config",
+    "prettier",
+    "prettier-config",
+    "commitlint",
+    "commitlint-config",
+    "typescript",
+    "tsconfig",
+    "devkit",
+    "linting",
+    "code-style",
+    "config"
+  ],
+  "version": "0.0.0",
+  "exports": {
+    "./commitlint": {
+      "types": "./dist/commitlint.d.ts",
+      "require": "./dist/commitlint.js",
+      "import": "./dist/commitlint.mjs",
+      "default": "./dist/commitlint.mjs"
+    },
+    "./eslint": {
+      "types": "./dist/eslint-base.d.ts",
+      "require": "./dist/eslint-base.js",
+      "import": "./dist/eslint-base.mjs",
+      "default": "./dist/eslint-base.mjs"
+    },
+    "./eslint-base": {
+      "types": "./dist/eslint-base.d.ts",
+      "require": "./dist/eslint-base.js",
+      "import": "./dist/eslint-base.mjs",
+      "default": "./dist/eslint-base.mjs"
+    },
+    "./eslint-node": {
+      "types": "./dist/eslint-node.d.ts",
+      "require": "./dist/eslint-node.js",
+      "import": "./dist/eslint-node.mjs",
+      "default": "./dist/eslint-node.mjs"
+    },
+    "./eslint-react": {
+      "types": "./dist/eslint-react.d.ts",
+      "require": "./dist/eslint-react.js",
+      "import": "./dist/eslint-react.mjs",
+      "default": "./dist/eslint-react.mjs"
+    },
+    "./eslint-tsdoc": {
+      "types": "./dist/eslint-tsdoc.d.ts",
+      "require": "./dist/eslint-tsdoc.js",
+      "import": "./dist/eslint-tsdoc.mjs",
+      "default": "./dist/eslint-tsdoc.mjs"
+    },
+    "./eslint-vitest": {
+      "types": "./dist/eslint-vitest.d.ts",
+      "require": "./dist/eslint-vitest.js",
+      "import": "./dist/eslint-vitest.mjs",
+      "default": "./dist/eslint-vitest.mjs"
+    },
+    "./lint-staged": {
+      "types": "./dist/lint-staged.d.ts",
+      "require": "./dist/lint-staged.js",
+      "import": "./dist/lint-staged.mjs",
+      "default": "./dist/lint-staged.mjs"
+    },
+    "./prettier": {
+      "types": "./dist/prettier.d.ts",
+      "require": "./dist/prettier.js",
+      "import": "./dist/prettier.mjs",
+      "default": "./dist/prettier.mjs"
+    },
+    "./semantic-release": {
+      "types": "./dist/semantic-release.d.ts",
+      "require": "./dist/semantic-release.js",
+      "import": "./dist/semantic-release.mjs",
+      "default": "./dist/semantic-release.mjs"
+    },
+    "./package.json": "./package.json",
+    "./tsconfig.json": "./tsconfig/tsconfig.base.json",
+    "./tsconfig.base.json": "./tsconfig/tsconfig.base.json",
+    "./tsconfig.browser.json": "./tsconfig/tsconfig.browser.json",
+    "./tsconfig.node.json": "./tsconfig/tsconfig.node.json",
+    "./tsconfig.react.json": "./tsconfig/tsconfig.react.json",
+    "./tsconfig.strict.json": "./tsconfig/tsconfig.strict.json"
+  },
+  "files": [
+    "dist/",
+    "tsconfig/",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "audit": "npm audit --omit-dev",
+    "build": "tsup",
+    "clean": "rimraf coverage dist",
+    "check": "npx tsc --noEmit && npm run build && es-check es2022 'dist/*.js' && es-check es2022 --module 'dist/*.mjs'",
+    "fix": "npx prettier --write . && npx eslint . --fix",
+    "lint": "npx prettier --check . && npx eslint . --max-warnings 0",
+    "prebuild": "npm run clean && npm run lint",
+    "test": "echo 'No tests specified' && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m14n/devkit.git"
+  },
+  "author": "Michael Krohmann",
+  "funding": "https://github.com/sponsors/m14n",
+  "bugs": {
+    "url": "https://github.com/m14n/devkit/issues"
+  },
+  "homepage": "https://github.com/m14n/devkit",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/js": "^9.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "commitlint": "^19.8.1",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.5.3",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-tsdoc": "^0.4.0",
+    "globals": "^13.24.0 || ^14 || ^15 || ^16",
+    "prettier": "^3.0.0",
+    "typescript": ">=5.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.3",
+    "@semantic-release/npm": "^12.0.2",
+    "@semantic-release/release-notes-generator": "^14.0.3",
+    "@swc/core": "^1.13.3",
+    "@types/node": "^24.1.0",
+    "es-check": "^9.1.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "markdownlint-cli": "^0.45.0",
+    "prettier-plugin-import-sort": "^0.0.7",
+    "rimraf": "^6.0.1",
+    "semantic-release": "^24.2.7",
+    "terser": "^5.43.1",
+    "tsup": "^8.5.0"
+  },
+  "peerDependenciesMeta": {
+    "@commitlint/config-conventional": {
+      "optional": true
+    },
+    "commitlint": {
+      "optional": true
+    },
+    "eslint-plugin-react": {
+      "optional": true
+    },
+    "eslint-plugin-react-hooks": {
+      "optional": true
+    },
+    "eslint-plugin-jsx-a11y": {
+      "optional": true
+    },
+    "eslint-plugin-tsdoc": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=18.18"
+  }
+}

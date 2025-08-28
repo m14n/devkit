@@ -1,0 +1,22 @@
+module.exports = {
+  bracketSameLine: true,
+  bracketSpacing: true,
+  printWidth: 100,
+  singleQuote: true,
+  tabWidth: 2,
+  trailingComma: 'all',
+  overrides: [
+    {
+      files: '*.json',
+      options: {
+        trailingComma: 'none',
+      },
+    },
+    {
+      files: '*.md',
+      options: {
+        printWidth: 120,
+      },
+    },
+  ],
+};
