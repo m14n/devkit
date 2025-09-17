@@ -13,6 +13,11 @@ export default [
         test: true,
         vi: true,
       },
+      parserOptions: {
+        ecmaVersion: 2022,
+        sourceType: 'module',
+        ecmaFeatures: { jsx: true },
+      },
     },
   },
 ];
