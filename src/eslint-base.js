@@ -31,9 +31,9 @@ export default [
         'error',
         {
           argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
           caughtErrorsIgnorePattern: '^_',
           destructuredArrayIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
         },
       ],
       '@typescript-eslint/triple-slash-reference': 'off',
