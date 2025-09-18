@@ -150,13 +150,16 @@ npm i -D globals
 ### ESLint React preset
 
 ```sh
-npm i -D eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks
+npm i -D eslint-plugin-jsx-a11y \
+  eslint-plugin-react \
+  eslint-plugin-react-hooks
 ```
 
 ### ESLint Test (Vitest) preset
 
 ```sh
-npm i -D @vitest/coverage-v8 vitest
+npm i -D @vitest/coverage-v8 \
+  vitest
 
 # In tests, either import from 'vitest' or add `"types": ["node", "vitest"]` in `tsconfig.test.json`.
 ```
