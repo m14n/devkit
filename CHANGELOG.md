@@ -1,3 +1,10 @@
+## [0.1.2](https://github.com/m14n/devkit/compare/v0.1.1...v0.1.2) (2025-09-18)
+
+
+### Bug Fixes
+
+* publish stable replacement for `v0.2.0` ([1d742fe](https://github.com/m14n/devkit/commit/1d742fe6c5b156045f27b8b3d50e92166d9e93b3))
+
 ## [0.1.1](https://github.com/m14n/devkit/compare/v0.1.0...v0.1.1) (2025-09-18)
 
 
