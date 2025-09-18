@@ -1,3 +1,10 @@
+## [0.2.1](https://github.com/m14n/devkit/compare/v0.2.0...v0.2.1) (2025-09-18)
+
+
+### Bug Fixes
+
+* patch after `0.2.0` (no functional changes) ([012fee0](https://github.com/m14n/devkit/commit/012fee0f0cb4043ba0e43036e857b3e1773db76f))
+
 # [0.2.0](https://github.com/m14n/devkit/compare/v0.1.2...v0.2.0) (2025-09-18)
 
 
