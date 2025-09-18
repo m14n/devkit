@@ -119,7 +119,7 @@ Create a `.lintstagedrc.js` in your project root:
 export { default } from '@m14n/devkit/lint-staged';
 ```
 
-### semantic-release (optional)
+### semantic-release (optional, recommended)
 
 Use the shared config in your `.releaserc.json`:
 
@@ -136,8 +136,12 @@ Install only what you actually use. Copy the block(s) that match your project.
 ### Core (ESLint base + Prettier + TypeScript)
 
 ```sh
-npm i -D @eslint/js @typescript-eslint/parser @typescript-eslint/eslint-plugin \
-  eslint eslint-config-prettier eslint-plugin-import \
+npm i -D @eslint/js \
+  @typescript-eslint/parser \
+  @typescript-eslint/eslint-plugin \
+  eslint \
+  eslint-config-prettier \
+  eslint-plugin-import \
   prettier typescript
 ```
 
@@ -173,13 +177,15 @@ npm i -D prettier
 ### Commitlint preset
 
 ```sh
-npm i -D @commitlint/config-conventional commitlint
+npm i -D @commitlint/config-conventional \
+  commitlint
 ```
 
 ### lint-staged (optional, recommended)
 
 ```sh
-npm i -D lint-staged markdownlint-cli
+npm i -D lint-staged \
+  markdownlint-cli
 ```
 
 ### semantic-release (optional)
