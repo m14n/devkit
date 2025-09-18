@@ -15,6 +15,7 @@ npm i -D @m14n/devkit
 | ---------------- | ------------------------------- | ------------------------------------------------------------------------------- |
 | Commitlint       | `@m14n/devkit/commitlint`       | `extends: ['@m14n/devkit/commitlint']` in `commitlint.config.js`                |
 | ESLint Base      | `@m14n/devkit/eslint-base`      | `import node from '@m14n/devkit/eslint-base'` in `eslint.config.js`.            |
+| ESLint Browser   | `@m14n/devkit/eslint-browser`   | `import browser from '@m14n/devkit/eslint-browser'` in `eslint.config.js`.      |
 | ESLint Node      | `@m14n/devkit/eslint-node`      | `import node from '@m14n/devkit/eslint-node'`                                   |
 | ESLint React     | `@m14n/devkit/eslint-react`     | `import react from '@m14n/devkit/eslint-react'`                                 |
 | ESLint TSDoc     | `@m14n/devkit/eslint-tsdoc`     | `import tsdoc from '@m14n/devkit/eslint-tsdoc'`                                 |
@@ -34,6 +35,8 @@ Pick the presets you need and compose them in your eslint.config.js (Flat Config
 // eslint.config.js
 import base from '@m14n/devkit/eslint-base';
 import node from '@m14n/devkit/eslint-node';
+// If using Browser:
+// import browser from '@m14n/devkit/eslint-browser';
 // If using React:
 // import react from '@m14n/devkit/eslint-react';
 // If using Vitest:
@@ -42,6 +45,7 @@ import node from '@m14n/devkit/eslint-node';
 export default [
   ...base,
   ...node,
+  // ...browser,
   // ...react,
   // ...vitest
 ];
@@ -49,13 +53,14 @@ export default [
 
 #### Available ESLint presets
 
-| Subpath                      | Purpose                          | Requires            |
-| ---------------------------- | -------------------------------- | ------------------- |
-| `@m14n/devkit/eslint-base`   | Base TypeScript + import + tsdoc | core peers only.    |
-| `@m14n/devkit/eslint-node`   | Node globals / rules             | none (just globals) |
-| `@m14n/devkit/eslint-react`  | React, Hooks, a11y               | React plugins (opt) |
-| `@m14n/devkit/eslint-tsdoc`  | Vitest globals                   | tsdoc plugins (opt) |
-| `@m14n/devkit/eslint-vitest` | Vitest globals                   | none (just globals) |
+| Subpath                       | Purpose                          | Requires            |
+| ----------------------------- | -------------------------------- | ------------------- |
+| `@m14n/devkit/eslint-base`    | Base TypeScript + import + tsdoc | core peers only.    |
+| `@m14n/devkit/eslint-browser` | Browser globals / rules.         | none (just globals) |
+| `@m14n/devkit/eslint-node`    | Node globals / rules             | none (just globals) |
+| `@m14n/devkit/eslint-react`   | React, Hooks, a11y               | React plugins (opt) |
+| `@m14n/devkit/eslint-tsdoc`   | Vitest globals                   | tsdoc plugins (opt) |
+| `@m14n/devkit/eslint-vitest`  | Vitest globals                   | none (just globals) |
 
 ### Prettier
 

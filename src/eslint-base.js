@@ -5,7 +5,7 @@ import tsParser from '@typescript-eslint/parser';
 
 export default [
   {
-    files: ['**/*.ts'],
+    files: ['**/*.{ts,tsx}'],
     plugins: {
       '@typescript-eslint': ts,
       import: importPlugin,
@@ -21,6 +21,7 @@ export default [
       ...js.configs.recommended.rules,
       ...ts.configs['recommended-requiring-type-checking'].rules,
       ...ts.configs['stylistic-type-checked'].rules,
+      '@typescript-eslint/array-type': ['error', { default: 'generic' }],
       '@typescript-eslint/experimental-decorators': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/no-empty-interface': 'off',
@@ -31,6 +32,8 @@ export default [
         {
           argsIgnorePattern: '^_',
           varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
         },
       ],
       '@typescript-eslint/triple-slash-reference': 'off',
@@ -54,6 +57,7 @@ export default [
         },
       ],
       'no-console': 'warn',
+      'no-unused-vars': 'off',
       'padded-blocks': ['error', 'never'],
       quotes: [
         'error',

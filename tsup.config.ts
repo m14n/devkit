@@ -4,6 +4,7 @@ export default defineConfig({
   entry: {
     commitlint: 'src/commitlint.js',
     'eslint-base': 'src/eslint-base.js',
+    'eslint-browser': 'src/eslint-browser.js',
     'eslint-node': 'src/eslint-node.js',
     'eslint-react': 'src/eslint-react.js',
     'eslint-tsdoc': 'src/eslint-tsdoc.js',
