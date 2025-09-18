@@ -1,3 +1,10 @@
+# [0.2.0](https://github.com/m14n/devkit/compare/v0.1.2...v0.2.0) (2025-09-18)
+
+
+### Features
+
+* promote to 0.2 line (no functional changes) ([3836589](https://github.com/m14n/devkit/commit/3836589a6a368e257e75db2e463c998b34c776d8))
+
 ## [0.1.2](https://github.com/m14n/devkit/compare/v0.1.1...v0.1.2) (2025-09-18)
 
 
