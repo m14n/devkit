@@ -16,7 +16,7 @@
     "code-style",
     "config"
   ],
-  "version": "0.1.0",
+  "version": "0.1.1",
   "exports": {
     "./commitlint": {
       "types": "./dist/commitlint.d.ts",
