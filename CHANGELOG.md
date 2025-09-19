@@ -1,3 +1,10 @@
+## [0.2.2](https://github.com/m14n/devkit/compare/v0.2.1...v0.2.2) (2025-09-19)
+
+
+### Bug Fixes
+
+* pin dev dependencies ([ac516e5](https://github.com/m14n/devkit/commit/ac516e5fb323c5fc07ccd834b95d3f2917ceb169))
+
 ## [0.2.1](https://github.com/m14n/devkit/compare/v0.2.0...v0.2.1) (2025-09-18)
 
 
