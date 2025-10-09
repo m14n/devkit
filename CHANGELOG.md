@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/m14n/devkit/compare/v0.2.2...v0.3.0) (2025-10-09)
+
+
+### Features
+
+* **eslint:** allow declaration merge ([d5f1605](https://github.com/m14n/devkit/commit/d5f16053464cad73202a636ea22393dd9e7454fa))
+
 ## [0.2.2](https://github.com/m14n/devkit/compare/v0.2.1...v0.2.2) (2025-09-19)
 
 
