@@ -58,6 +58,7 @@ export default [
         },
       ],
       'no-console': 'warn',
+      'no-redeclare': 'off',
       'no-unused-vars': 'off',
       'padded-blocks': ['error', 'never'],
       quotes: [

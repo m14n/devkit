@@ -28,11 +28,14 @@ export default [
       '@typescript-eslint/no-empty-interface': 'off',
       '@typescript-eslint/no-empty-function': 'off',
       '@typescript-eslint/no-namespace': 'off',
+      '@typescript-eslint/no-redeclare': ['error', { ignoreDeclarationMerge: true }],
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
-          varsIgnorePattern: '^_',
           argsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
         },
       ],
       '@typescript-eslint/triple-slash-reference': 'off',
@@ -56,6 +59,8 @@ export default [
         },
       ],
       'no-console': 'warn',
+      'no-redeclare': 'off',
+      'no-unused-vars': 'off',
       'padded-blocks': ['error', 'never'],
       quotes: [
         'error',
