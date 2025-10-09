@@ -1,3 +1,10 @@
+## [0.3.1](https://github.com/m14n/devkit/compare/v0.3.0...v0.3.1) (2025-10-09)
+
+
+### Bug Fixes
+
+* **eslint:** disable`no-redeclare` base rule ([4884db5](https://github.com/m14n/devkit/commit/4884db5c57439b3c3b32668cc4919230162754ec))
+
 # [0.3.0](https://github.com/m14n/devkit/compare/v0.2.2...v0.3.0) (2025-10-09)
 
 
