@@ -17,6 +17,9 @@ jobs:
   build:
     name: Build and release
     runs-on: ubuntu-latest
+    env:
+      # Don't run the local Git hooks (e.g. pre-push) during semantic-release's git push.
+      HUSKY: 0
     steps:
       - name: Checkout
         uses: actions/checkout@v6

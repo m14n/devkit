@@ -14,6 +14,9 @@ jobs:
   check:
     name: Lint, build and test
     runs-on: ubuntu-latest
+    env:
+      # Git hooks are for local development only.
+      HUSKY: 0
     steps:
       - name: Checkout
         uses: actions/checkout@v6
