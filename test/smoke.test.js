@@ -135,6 +135,7 @@ describe('tsconfig presets', () => {
     );
     assert.deepEqual(parsed.errors, []);
     assert.equal(parsed.options.strict, true, 'base');
+    assert.equal(parsed.options.noImplicitAny, true, 'base sets noImplicitAny explicitly');
     assert.equal(parsed.options.jsx, ts.JsxEmit.ReactJSX, 'react');
     assert.equal(parsed.options.noUncheckedIndexedAccess, true, 'strict');
     assert.equal(parsed.options.declaration, true, 'lib');
