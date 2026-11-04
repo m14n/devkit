@@ -83,10 +83,6 @@
       "import": {
         "types": "./dist/eslint-react.d.ts",
         "default": "./dist/eslint-react.js"
-      },
-      "require": {
-        "types": "./dist/eslint-react.d.cts",
-        "default": "./dist/eslint-react.cjs"
       }
     },
     "./eslint-tsdoc": {
@@ -184,15 +180,15 @@
   },
   "peerDependencies": {
     "@commitlint/config-conventional": ">=20 <22",
-    "@eslint/js": ">=9 <10",
+    "@eslint-react/eslint-plugin": ">=5 <6",
+    "@eslint/js": ">=10 <11",
     "@typescript-eslint/eslint-plugin": ">=8 <9",
     "@typescript-eslint/parser": ">=8 <9",
     "commitlint": ">=20 <22",
-    "eslint": ">=9 <10",
+    "eslint": ">=10 <11",
     "eslint-config-prettier": ">=10 <11",
     "eslint-plugin-import-x": ">=4.17 <5",
-    "eslint-plugin-jsx-a11y": ">=6.10 <7",
-    "eslint-plugin-react": ">=7.37 <8",
+    "eslint-plugin-jsx-a11y-x": ">=0.2 <0.3",
     "eslint-plugin-react-hooks": ">=7 <8",
     "eslint-plugin-tsdoc": ">=0.5 <0.6",
     "globals": ">=13.24.0 <18",
@@ -202,6 +198,7 @@
   "devDependencies": {
     "@commitlint/cli": "21.2.4",
     "@commitlint/config-conventional": "21.2.4",
+    "@eslint-react/eslint-plugin": "^5.28.8",
     "@semantic-release/commit-analyzer": "13.0.1",
     "@semantic-release/github": "12.0.10",
     "@semantic-release/npm": "13.2.0",
@@ -210,8 +207,7 @@
     "@types/node": "26.6.6",
     "commitlint": "21.2.4",
     "es-check": "9.8.1",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-jsx-a11y-x": "^0.2.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-tsdoc": "^0.5.4",
     "husky": "9.1.7",
@@ -226,16 +222,16 @@
     "@commitlint/config-conventional": {
       "optional": true
     },
+    "@eslint-react/eslint-plugin": {
+      "optional": true
+    },
     "commitlint": {
       "optional": true
     },
-    "eslint-plugin-react": {
+    "eslint-plugin-jsx-a11y-x": {
       "optional": true
     },
     "eslint-plugin-react-hooks": {
-      "optional": true
-    },
-    "eslint-plugin-jsx-a11y": {
       "optional": true
     },
     "eslint-plugin-tsdoc": {

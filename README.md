@@ -14,12 +14,11 @@ npm i -D @m14n/devkit
 | Tool       | Supported versions |
 | ---------- | ------------------ |
 | Node.js    | 22+                |
-| ESLint     | 9                  |
+| ESLint     | 10                 |
 | TypeScript | 5.0 – 6.0          |
 | Prettier   | 3                  |
 
-ESLint 10 support will follow once `eslint-plugin-react` and `eslint-plugin-jsx-a11y` declare it. The TypeScript range
-is limited by what typescript-eslint supports.
+The TypeScript range is limited by what typescript-eslint supports.
 
 ## Quick Reference
 
@@ -41,7 +40,7 @@ is limited by what typescript-eslint supports.
 
 ### ESLint
 
-Pick the presets you need and compose them in your `eslint.config.js` (flat config, ESLint 9). Put `base` first.
+Pick the presets you need and compose them in your `eslint.config.js` (flat config, ESLint 10). Put `base` first.
 
 ```js
 // eslint.config.js
@@ -68,14 +67,14 @@ export default [
 
 #### Available ESLint presets
 
-| Subpath                       | Purpose                                                         | Requires                                                                     |
-| ----------------------------- | --------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `@m14n/devkit/eslint-base`    | JS + type-checked TypeScript, import order, Prettier-compatible | Core peers                                                                   |
-| `@m14n/devkit/eslint-browser` | Browser globals                                                 | `globals`                                                                    |
-| `@m14n/devkit/eslint-node`    | Node globals                                                    | `globals`                                                                    |
-| `@m14n/devkit/eslint-react`   | React, Hooks (incl. React Compiler rules), JSX accessibility    | `eslint-plugin-react`, `eslint-plugin-react-hooks`, `eslint-plugin-jsx-a11y` |
-| `@m14n/devkit/eslint-tsdoc`   | TSDoc comment syntax                                            | `eslint-plugin-tsdoc`                                                        |
-| `@m14n/devkit/eslint-vitest`  | Vitest globals in `*.test.*` / `*.spec.*`                       | none                                                                         |
+| Subpath                       | Purpose                                                         | Requires                                                                               |
+| ----------------------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `@m14n/devkit/eslint-base`    | JS + type-checked TypeScript, import order, Prettier-compatible | Core peers                                                                             |
+| `@m14n/devkit/eslint-browser` | Browser globals                                                 | `globals`                                                                              |
+| `@m14n/devkit/eslint-node`    | Node globals                                                    | `globals`                                                                              |
+| `@m14n/devkit/eslint-react`   | React, Hooks (incl. React Compiler rules), JSX accessibility    | `@eslint-react/eslint-plugin`, `eslint-plugin-react-hooks`, `eslint-plugin-jsx-a11y-x` |
+| `@m14n/devkit/eslint-tsdoc`   | TSDoc comment syntax                                            | `eslint-plugin-tsdoc`                                                                  |
+| `@m14n/devkit/eslint-vitest`  | Vitest globals in `*.test.*` / `*.spec.*`                       | none                                                                                   |
 
 Good to know about `eslint-base`:
 
@@ -86,6 +85,15 @@ Good to know about `eslint-base`:
   `vitest.config.ts` are a common miss.
 - It ends with [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier), so formatting is left to
   Prettier. Run Prettier on its own (for example via lint-staged), not through ESLint.
+
+Good to know about `eslint-react`:
+
+- It uses [`@eslint-react/eslint-plugin`](https://eslint-react.xyz) for React rules,
+  [`eslint-plugin-react-hooks`](https://react.dev/reference/eslint-plugin-react-hooks) for the Hooks and React Compiler
+  rules, and [`eslint-plugin-jsx-a11y-x`](https://github.com/es-tooling/eslint-plugin-jsx-a11y-x) for accessibility.
+- Accessibility rules keep the `jsx-a11y/*` names, so existing `eslint-disable` comments keep working.
+- It is ESM-only, because `@eslint-react/eslint-plugin` is. Load it from `eslint.config.js` or `eslint.config.mjs`, not
+  from a CommonJS `eslint.config.cjs`.
 
 ### Prettier
 
@@ -198,8 +206,8 @@ npm i -D eslint-plugin-tsdoc
 ### ESLint React preset
 
 ```sh
-npm i -D eslint-plugin-jsx-a11y \
-  eslint-plugin-react \
+npm i -D @eslint-react/eslint-plugin \
+  eslint-plugin-jsx-a11y-x \
   eslint-plugin-react-hooks
 ```
 
@@ -278,6 +286,24 @@ From now on:
 ## Upgrading
 
 Release notes for every version are on [GitHub Releases](https://github.com/m14n/devkit/releases).
+
+### From 1.x to 2.0
+
+- **ESLint 10 is required.** ESLint 9 is no longer supported upstream. Update `eslint` and `@eslint/js` to 10:
+  `npm i -D eslint@10 @eslint/js@10`.
+- **The React preset uses maintained plugins that support ESLint 10.** Swap the plugins:
+
+  ```sh
+  npm rm eslint-plugin-react eslint-plugin-jsx-a11y
+  npm i -D @eslint-react/eslint-plugin eslint-plugin-jsx-a11y-x
+  ```
+
+  `react/*` rules are replaced by `@eslint-react/*` rules. Update any `eslint-disable` comments and rule overrides
+  that name them (for example `react/jsx-key` is now `@eslint-react/no-missing-key`). `jsx-a11y/*` and `react-hooks/*`
+  rule names don't change. React version detection now reads `settings['react-x']` instead of `settings.react`.
+
+- **`@m14n/devkit/eslint-react` can no longer be loaded with `require`.** Use an ESM ESLint config
+  (`eslint.config.js` or `.mjs`).
 
 ### From 0.x to 1.0
 

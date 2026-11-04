@@ -27,10 +27,13 @@ function targets(entry) {
 
 describe('package exports', () => {
   for (const key of jsExports) {
-    it(`${key} loads via import and require`, async () => {
+    // Presets whose plugins are ESM-only (e.g. eslint-react) have no `require` entry.
+    const hasRequire = 'require' in pkg.exports[key];
+    it(`${key} loads via import${hasRequire ? ' and require' : ' (ESM only)'}`, async () => {
       const esm = (await import(id(key))).default;
-      const cjs = require(id(key));
       assert.ok(esm && typeof esm === 'object', 'ESM default export');
+      if (!hasRequire) return;
+      const cjs = require(id(key));
       assert.ok((cjs.default ?? cjs) && typeof (cjs.default ?? cjs) === 'object', 'CJS export');
     });
   }
@@ -65,7 +68,7 @@ describe('eslint presets', async () => {
     ...(await load('tsdoc')),
     ...(await load('vitest')),
     // React isn't installed here, so pin the version instead of `detect`.
-    { settings: { react: { version: '19.0' } } },
+    { settings: { 'react-x': { version: '19.0' } } },
   ];
   const eslint = new ESLint({ cwd: fixtures, overrideConfigFile: true, overrideConfig: config });
   const results = await eslint.lintFiles(['src']);
@@ -95,11 +98,19 @@ describe('eslint presets', async () => {
 
   it('reports React, Hooks and a11y problems in TSX', () =>
     expectRules('List.tsx', [
-      'react/jsx-key',
+      '@eslint-react/no-missing-key',
       'react-hooks/exhaustive-deps',
+      'react-hooks/set-state-in-effect',
       'jsx-a11y/alt-text',
       'jsx-a11y/click-events-have-key-events',
     ]));
+
+  it('reports each hooks problem once (react-hooks, not @eslint-react)', () => {
+    const duplicates = rulesFor('List.tsx').filter((rule) =>
+      ['@eslint-react/exhaustive-deps', '@eslint-react/set-state-in-effect'].includes(rule),
+    );
+    assert.deepEqual(duplicates, []);
+  });
 
   it('lints CommonJS with Node globals', () =>
     assert.deepEqual(rulesFor('legacy.cjs'), ['no-undef'], 'only `undefinedThing` is undefined'));
