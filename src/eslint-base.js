@@ -1,43 +1,30 @@
-import importPlugin from 'eslint-plugin-import';
 import js from '@eslint/js';
 import ts from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
+import prettier from 'eslint-config-prettier';
+import importPlugin from 'eslint-plugin-import-x';
+
+const JS_FILES = ['**/*.{js,mjs,cjs,jsx}'];
+const TS_FILES = ['**/*.{ts,mts,cts,tsx}'];
+const TS_TEST_FILES = ['**/*.{test,spec}.{ts,mts,cts,tsx}'];
 
 export default [
   {
-    files: ['**/*.{ts,tsx}'],
+    ignores: ['**/dist/**', '**/coverage/**'],
+  },
+
+  // JavaScript + TypeScript
+  {
+    files: [...JS_FILES, ...TS_FILES],
     plugins: {
-      '@typescript-eslint': ts,
       import: importPlugin,
     },
     languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        ecmaVersion: 2022,
-        project: './tsconfig.json',
-      },
+      ecmaVersion: 'latest',
+      sourceType: 'module',
     },
     rules: {
       ...js.configs.recommended.rules,
-      ...ts.configs['recommended-requiring-type-checking'].rules,
-      ...ts.configs['stylistic-type-checked'].rules,
-      '@typescript-eslint/array-type': ['error', { default: 'generic' }],
-      '@typescript-eslint/experimental-decorators': 'off',
-      '@typescript-eslint/explicit-function-return-type': 'off',
-      '@typescript-eslint/no-empty-interface': 'off',
-      '@typescript-eslint/no-empty-function': 'off',
-      '@typescript-eslint/no-namespace': 'off',
-      '@typescript-eslint/no-redeclare': ['error', { ignoreDeclarationMerge: true }],
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          argsIgnorePattern: '^_',
-          caughtErrorsIgnorePattern: '^_',
-          destructuredArrayIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-        },
-      ],
-      '@typescript-eslint/triple-slash-reference': 'off',
       'import/order': [
         'error',
         {
@@ -58,16 +45,6 @@ export default [
         },
       ],
       'no-console': 'warn',
-      'no-redeclare': 'off',
-      'no-unused-vars': 'off',
-      'padded-blocks': ['error', 'never'],
-      quotes: [
-        'error',
-        'single',
-        {
-          avoidEscape: true,
-        },
-      ],
       'sort-imports': [
         'error',
         {
@@ -80,10 +57,56 @@ export default [
     },
   },
   {
-    files: ['**/*.spec.ts'],
+    files: ['**/*.cjs'],
+    languageOptions: {
+      sourceType: 'commonjs',
+    },
+  },
+
+  // TypeScript (type-checked)
+  {
+    files: TS_FILES,
+    plugins: {
+      '@typescript-eslint': ts,
+    },
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        // Finds the nearest tsconfig.json for each file; works in monorepos.
+        projectService: true,
+      },
+    },
     rules: {
-      '@typescript-eslint/explicit-function-return-type': 'error',
+      // Turns off core rules that TypeScript already covers (e.g. `no-undef`, `no-redeclare`).
+      ...ts.configs['eslint-recommended'].overrides[0].rules,
+      ...ts.configs['recommended-type-checked'].rules,
+      ...ts.configs['stylistic-type-checked'].rules,
+      '@typescript-eslint/array-type': ['error', { default: 'generic' }],
+      '@typescript-eslint/no-empty-function': 'off',
+      '@typescript-eslint/no-empty-object-type': ['error', { allowInterfaces: 'always' }],
+      '@typescript-eslint/no-namespace': 'off',
+      '@typescript-eslint/no-redeclare': ['error', { ignoreDeclarationMerge: true }],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+        },
+      ],
+      '@typescript-eslint/triple-slash-reference': 'off',
+      'no-redeclare': 'off',
+      'no-unused-vars': 'off',
+    },
+  },
+  {
+    files: TS_TEST_FILES,
+    rules: {
       '@typescript-eslint/no-non-null-assertion': 'off',
     },
   },
+
+  // Must stay last: turns off every rule that conflicts with Prettier.
+  prettier,
 ];

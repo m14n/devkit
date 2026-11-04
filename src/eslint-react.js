@@ -1,42 +1,27 @@
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
-import tsParser from '@typescript-eslint/parser';
+
+const JSX_FILES = ['**/*.{jsx,tsx}'];
+// Custom hooks often live in plain .js/.ts files, so the hooks rules cover those too.
+const ALL_FILES = ['**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx}'];
 
 export default [
+  { ...react.configs.flat.recommended, files: JSX_FILES },
+  { ...react.configs.flat['jsx-runtime'], files: JSX_FILES },
+  { ...jsxA11y.flatConfigs.recommended, files: JSX_FILES },
+  { ...reactHooks.configs.flat.recommended, files: ALL_FILES },
   {
-    files: ['**/*.{tsx,jsx}'],
-    languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-        ecmaFeatures: { jsx: true },
-        project: './tsconfig.json',
-      },
+    files: JSX_FILES,
+    settings: {
+      react: { version: 'detect' },
     },
   },
   {
-    files: ['**/*.jsx'],
-    languageOptions: {
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-        ecmaFeatures: { jsx: true },
-      },
-    },
-  },
-  {
-    files: ['**/*.{jsx,tsx}'],
-    plugins: {
-      react,
-      'react-hooks': reactHooks,
-      'jsx-a11y': jsxA11y,
-    },
+    // TypeScript already checks props.
+    files: ['**/*.tsx'],
     rules: {
-      'react-hooks/exhaustive-deps': 'warn',
-      'react-hooks/rules-of-hooks': 'error',
+      'react/prop-types': 'off',
     },
-    settings: { react: { version: 'detect' } },
   },
 ];

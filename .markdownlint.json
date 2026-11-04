@@ -1,6 +1,11 @@
 {
   "extends": "markdownlint/style/prettier",
   "MD013": {
-    "code_block_line_length": 120
+    "line_length": 120,
+    "code_block_line_length": 120,
+    "tables": false
+  },
+  "MD024": {
+    "siblings_only": true
   }
 }

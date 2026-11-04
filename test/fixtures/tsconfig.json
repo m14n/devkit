@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "../../tsconfig/tsconfig.react.json",
+    "../../tsconfig/tsconfig.strict.json",
+    "../../tsconfig/tsconfig.lib.json"
+  ],
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["node"]
+  },
+  "include": ["src"]
+}

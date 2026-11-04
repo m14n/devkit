@@ -130,8 +130,5 @@ dist
 .idea
 .vscode
 
-# Code Quality
-.husky
-
 # Others
 .DS_Store

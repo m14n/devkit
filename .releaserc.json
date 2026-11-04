@@ -11,8 +11,7 @@
     [
       "@semantic-release/commit-analyzer",
       {
-        "type": "chore",
-        "release": false
+        "releaseRules": [{ "type": "chore", "release": false }]
       }
     ],
     "@semantic-release/release-notes-generator",

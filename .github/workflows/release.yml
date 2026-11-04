@@ -30,8 +30,6 @@ jobs:
           node-version-file: .node-version
           registry-url: https://registry.npmjs.org
       - name: Install dependencies and build
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm ci
           npm run build

@@ -2,7 +2,7 @@ import globals from 'globals';
 
 export default [
   {
-    files: ['**/*.{ts,js}'],
+    files: ['**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx}'],
     languageOptions: {
       globals: { ...globals.node },
     },
